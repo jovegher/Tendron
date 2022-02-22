@@ -18,18 +18,22 @@ class Tendril
   }
   public void show()
   {
-    
     int startX = myX;
     int startY = myY;
+    int endX = 0;
+    int endY = 0;
     for (int i = 0; i < myNumSegments; i++) { 
       myAngle += Math.random()*0.4 - 0.2;
-      int endX = (int)(startX + Math.cos(myAngle)*SEG_LENGTH);
-      int endY = (int)(startY + Math.sin(myAngle)*SEG_LENGTH);
+      endX = (int)(startX + Math.cos(myAngle)*SEG_LENGTH);
+      endY = (int)(startY + Math.sin(myAngle)*SEG_LENGTH);
       stroke(200);
       line(startX, startY, endX, endY);
       startX = endX;
       startY = endY;
     }
-    if (myNumSegments <= 4); 
+    if (myNumSegments >= 3) {
+      myNumSegments--;
+    new Cluster(myNumSegments, endX, endY);
+    }
   }
 }
